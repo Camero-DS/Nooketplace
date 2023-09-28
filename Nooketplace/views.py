@@ -6,4 +6,4 @@ from django.http import HttpResponse
 
 
 def bienvenida(request):
-    return HttpResponse("Diego Aguilar \n Marcela Aguilera \n Maximiliano Bono \n Bastian Arancibia SS")
+    return HttpResponse("Diego Aguilar \n Marcela Aguilera \n Maximiliano Bono \n Bastian Arancibia")
