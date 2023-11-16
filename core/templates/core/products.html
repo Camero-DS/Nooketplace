@@ -1,13 +1,63 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
+{% load humanize %}
+{% load static %}
+<style>
+    .productos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-start;
+    }
 
+    .producto {
+        flex: 1; /* Flexibilidad, sin crecimiento, ancho máximo del 48% */
+        flex-basis: calc(30% - 10px); 
+    }
+
+    .contenedor_producto {
+        padding: 10px;
+        text-align: left;
+        background-color: rgba(238, 224, 161, 0.8); /* Fondo con color sólido transparente (ajusta el valor alfa según sea necesario) */
+
+    }
+
+    .detalle {
+        margin-bottom: 10px;
+    }
+
+    .producto img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
 <h3>Productos</h3>
+<div class= "productos">
+    {% for p in productos %}
 
-{% for product in data %}
-    <h4>{{ product.name }}</h4>
-    <img src="{{ product.picture }}" alt ="{{ product.name }}">
-    <h4>${{ product.price }}</h4>
-{% endfor %}
+    <div class="producto">
+
+        <div class="contenedor_producto">
+            <div class="detalle">
+                <h5>{{ p.name | title }}</h5>
+                <h5>${{ p.price | intcomma }}</h5>
+            </div>
+            {% if p.picture %}
+            <img src="{{ p.picture.url }}" alt="imagen producto" width="300" height="300">
+            {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
 
 {% endblock %}
+
+
+
+
+
+

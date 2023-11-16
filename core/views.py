@@ -11,8 +11,11 @@ def home(request):
 
 @login_required
 def products(request):
-    data_from_database = Productos.objects.all()
-    return render(request, 'core/products.html', {'data': data_from_database})
+    productos = Productos.objects.all()
+    data = {
+        'productos': productos
+    }
+    return render(request, 'core/products.html', data)
 
 def exit(request):
     logout(request)
