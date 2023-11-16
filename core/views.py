@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
+from .models import Productos
 
 # Create your views here.
 def home(request):
@@ -10,7 +11,8 @@ def home(request):
 
 @login_required
 def products(request):
-    return render(request, 'core/products.html')
+    data_from_database = Productos.objects.all()
+    return render(request, 'core/products.html', {'data': data_from_database})
 
 def exit(request):
     logout(request)
